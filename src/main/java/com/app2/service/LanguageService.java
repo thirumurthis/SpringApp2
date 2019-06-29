@@ -1,4 +1,4 @@
-package com.app2.Service;
+package com.app2.service;
 
 public interface LanguageService {
 

@@ -1,4 +1,4 @@
-package com.app2.Service;
+package com.app2.service;
 
 
 import org.springframework.context.annotation.Profile;

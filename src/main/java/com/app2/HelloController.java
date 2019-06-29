@@ -1,5 +1,6 @@
 package com.app2;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
@@ -20,12 +21,13 @@ public class HelloController {
 
     @Data
     static class Result {
-        private final int left;
-        private final int right;
-        private final long answer;
+        private final int left =0;
+        private final int right =0;
+        private final long answer= 0;
     }
 
     // SQL sample
+    /*
     @RequestMapping("calc")
     Result calc(@RequestParam int left, @RequestParam int right) {
         MapSqlParameterSource source = new MapSqlParameterSource()
@@ -33,5 +35,5 @@ public class HelloController {
                 .addValue("right", right);
         return jdbcTemplate.queryForObject("SELECT :left + :right AS answer", source,
                 (rs, rowNum) -> new Result(left, right, rs.getLong("answer")));
-    }
+    }*/
 }
