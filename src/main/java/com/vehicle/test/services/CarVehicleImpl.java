@@ -1,4 +1,4 @@
-package vehicle.test.services;
+package com.vehicle.test.services;
 
 public class CarVehicleImpl implements VehicleService {
     @Override

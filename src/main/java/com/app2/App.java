@@ -4,11 +4,11 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
-import vehicle.test.services.VehicleService;
+import com.vehicle.test.services.VehicleService;
 
 @SpringBootApplication
 
-@ComponentScan({"com.app2","vehicle.test.services"})
+@ComponentScan({"com.app2","com.vehicle.test.services"})
 public class App {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(App.class, args);
