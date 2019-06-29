@@ -35,7 +35,7 @@ org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoSuch
   @ComponentScan("com.app2") 
   @ComponentScan({"package1","package2"})
 ```
-
+(Image)[./Sb_ComponentScan.png]
 
 ### Java configuration
 
