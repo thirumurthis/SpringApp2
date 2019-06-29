@@ -35,11 +35,32 @@ org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoSuch
   @ComponentScan("com.app2") 
   @ComponentScan({"package1","package2"})
 ```
+@ComponentScan to includ the current package of the @SpringBootApplication annotation when referring the beans in the same package level
+![Image](Sb_ComponentScan.png)
 
+### Java configuration using @Configuration
+  - Creating a java class and annotating the class with @Configuration marks the class as a java configuration for spring context.
+  - In order to return the bean the method should create a bean and annotate with **@Bean** annotation
 
-### Java configuration
+```
+@Configuration
+public class VehicleConfig {
 
+    @Bean
+    public VehicleService busService(){
+        return new BusVehicleImpl();
+    }
 
+    @Bean
+    public VehicleService carService(){
+        return new CarVehicleImpl();
+    }
+}
+
+Exception: since the bean could not be resolved in this case
+Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'car' is defined.
+
+```
 
 
 
