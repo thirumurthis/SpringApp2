@@ -8,7 +8,7 @@ import vehicle.test.services.VehicleService;
 
 @SpringBootApplication
 
-@ComponentScan({"vehicle.test.services","com.app2"})
+@ComponentScan({"com.app2","vehicle.test.services"})
 public class App {
     public static void main(String[] args) {
         ApplicationContext ctx = SpringApplication.run(App.class, args);
