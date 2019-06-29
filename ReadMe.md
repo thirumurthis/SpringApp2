@@ -1,12 +1,13 @@
-# Dependency Injection
+## Dependency Injection
 
-# Inversion of Control
+## Inversion of Control
 
-# @AutoWired
+## @AutoWired
   Used for dependecny injection of bean, interface of class
  
-# @Profile
-   - @Profile annoation comes handy for use the necessary class to be active, by controlling them form *application.properties*
+## @Profile
+   - @Profile annoation comes handy when it is necessary to active the use of class by controlling them form *application.properties*
+   - For example, using in memory database for a local development and latter enabling the required database implementation, etc.
    - The profile with the default will be used if the applicaiton.properties was not provided for any active value. 
    ```
    in java class:
