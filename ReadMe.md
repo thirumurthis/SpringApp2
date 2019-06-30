@@ -50,27 +50,43 @@ org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoSuch
 ![Image](Sb_ComponentScan.png)
 
 ### Java configuration using @Configuration
-  - Creating a java class and annotating the class with @Configuration marks the class as a java configuration for spring context.
-  - In order to return the bean the method should create a bean and annotate with **@Bean** annotation
+  - For example, a datasource java bean or pojo class in an external jar that needs to be loaded to the Spring context, this can be configured in Spring using **@Configuration** and **@Bean**.
+  - If the dataource interface has multiple implemenation, then use the **@Profile** annoatation within **@Bean** to resolve.
+  - In the example below, the controller is used to autowire the beans.
 
 ```
+public interface VehicleService {
+    public String vehicleType();
+}
+---
+public class CarVehicleImpl implements VehicleService{
+    @Override
+    public String vehicleType() {
+        return "Car";
+    }
+}
+---
+public class BusVehicleImpl implements VehicleService {
+    @Override
+    public String vehicleType() {
+        return "Bus";
+    }
+---
 @Configuration
 public class VehicleConfig {
-
     @Bean
+    @Profile("bus")
     public VehicleService busService(){
         return new BusVehicleImpl();
     }
-
     @Bean
+    @Profile({"default","car"}) 
+    //Note: in @Profile if not default is mentioned, spring will not be able to resolve 
+    //the bean and throws exception
     public VehicleService carService(){
         return new CarVehicleImpl();
     }
 }
-
-Exception: since the bean could not be resolved in this case
-Exception in thread "main" org.springframework.beans.factory.NoSuchBeanDefinitionException: No bean named 'car' is defined.
-
 ```
 
 
