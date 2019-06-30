@@ -92,5 +92,82 @@ public class VehicleConfig {
 }
 ```
 
+### Factory pattern usage in java config
+```
+public interface BirdService {
+    public String birdType();
+}
+---
+public class CrowImpl implements BirdService {
+    @Override
+    public String birdType() {
+        return "Crow";
+    }
+}
+---
+public class GreyJayImpl implements BirdService {
+    @Override
+    public String birdType() {
+        return "Grey Jay";
+    }
+}
+---
+public class BirdFactory {
+
+    public BirdService getBirdService(String birdName){
+
+        BirdService birdService = null;
+        birdName = birdName.toUpperCase();
+        switch (birdName){
+            case "CROW" : birdService = new CrowImpl();break;
+            case "GREYJAY" : birdService = new GreyJayImpl();break;
+            case "SPARROW" : birdService = new SparrowImpl();break;
+            case "HUMMINGBIRD" : birdService = new HummingBirdImpl();break;
+            default: birdService= new CrowImpl();
+        }
+        return birdService;
+    }
+}
+---
+@Configuration
+public class BirdConfig {
+
+    //Bean for the fatcorybean
+    @Bean
+    public BirdFactory birdFactory(){
+        return new BirdFactory();
+    }
+
+    @Bean
+    @Profile({"default","crow"})
+    // the factory bean passes in as the argument to another bean
+    public BirdService getCrowService(BirdFactory birdFactory){
+        return birdFactory.getBirdService("crow");
+    }
+
+    @Bean
+    @Profile("sparrow")
+    public BirdService getSparrowService(BirdFactory birdFactory){
+        return birdFactory.getBirdService("sparrow");
+    }
+}
+---
+@Controller
+public class BirdController {
+
+    @Autowired
+    private BirdService birdService;
+
+    public void printBirdType(){
+        System.out.println(birdService.birdType());
+    }
+}
+---
+
+//Springboot application entry point
+BirdController birdController = (BirdController) ctx.getBean("birdController");
+birdController.printBirdType();
+
+```
 
 
