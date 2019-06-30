@@ -53,6 +53,9 @@ org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoSuch
   - For example, a datasource java bean or pojo class in an external jar that needs to be loaded to the Spring context, this can be configured in Spring using **@Configuration** and **@Bean**.
   - If the dataource interface has multiple implemenation, then use the **@Profile** annoatation within **@Bean** to resolve.
   - In the example below, the controller is used to autowire the beans.
+Thumb rule:
+  - When we have control over the code, we can use *@Component* annoation
+  - When the bean that needs to be referenced from the third party library we can use java or xml configuartion.
 
 ```
 public interface VehicleService {
