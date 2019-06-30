@@ -3,7 +3,18 @@
 ### Inversion of Control
 
 ### @AutoWired
-  Used for dependecny injection of bean, interface of class
+ - Used for dependecny injection of bean with the interface type of concrete class.
+  
+### @Controller
+ - In this SpringBoot application, we use the controller to bridge the @Component layer.
+ - The *@SpringBootApplication* annotated class, creates a *ApplicationContext* and looks for the **@Controller** annoated bean class.
+```
+  public static void main(String[] args) {
+     ApplicationContext ctx = SpringApplication.run(App2Application.class, args);
+     LanguageController languageController = (LanguageController) ctx.getBean("languageController");
+     languageController.sayHello();
+  }
+```
  
 ### @Profile
    - @Profile annoation comes handy when it is necessary to active the use of class by controlling them form *application.properties*
@@ -16,8 +27,10 @@
    in applicaton.properties
         spring.profiles.active=name1
    ```
-##### Below exception message occurs if the @Profile is not marked as default or no active entries in application.properties file spring will not be able to resolve between the English or Spanish language implementor component beans
-##### To resolve this issue use default within the @Profile or tag an active profile in application.properties
+##### If class is not marked with *@Profile(default)*, and there is no active entries in application.properties file, spring will not be able to resolve between the English or Spanish language component beans
+ - To fix this issue 
+ 	- use *@Profile({"default","english"})* **or**
+	- activate the profile in application.properties using *spring.profiles.active=english*
 ```
  Caused by: org.springframework.beans.factory.BeanCreationException: Could not autowire field: private com.app2.Service.LanguageService com.app2.HelloWorld.languageService; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type [com.app2.Service.LanguageService] found for dependency: expected at least 1 bean which qualifies as autowire candidate for this dependency. Dependency annotations: {@org.springframework.beans.factory.annotation.Autowired(required=true)}
 	at 
@@ -28,14 +41,12 @@ org.springframework.beans.factory.support.DefaultListableBeanFactory.raiseNoSuch
 
 ### @ComponentScan
   - @CompoenentScan annotation is used to tell spring to load the @Component,@Repository, etc. annoation to be resolved to the spring context from the specific package.
-  - Use this annotation over the class which has the *@SpringBootApplication*.
-  - Using the annotation to scan pacakge with wildcard, may cause performance when loading the springboot application
-  
+  - Use this annotation in the class which has the *@SpringBootApplication*.
+  - The annotation can take wildcards to scan pacakge, consider the performance when using wild card
 ```
   @ComponentScan("com.app2") 
   @ComponentScan({"package1","package2"})
 ```
-@ComponentScan to includ the current package of the @SpringBootApplication annotation when referring the beans in the same package level
 ![Image](Sb_ComponentScan.png)
 
 ### Java configuration using @Configuration
