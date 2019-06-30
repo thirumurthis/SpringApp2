@@ -3,7 +3,7 @@
 ### Inversion of Control
 
 ### @AutoWired
- - Used for dependecny injection of bean with the interface type of concrete class.
+ - Used for dependency injection of bean with the interface type of concrete class.
   
 ### @Controller
  - In this SpringBoot application, we use the controller to bridge the @Component layer.
@@ -173,7 +173,21 @@ birdController.printBirdType();
 ###### When multiple @Profile used on @Component and @Beans, the active profile for each controller needs to be mentioned in  *application.proeprties* for an active profile.
 ```
 # multiple active profiles usage
-spring.profiles.active=sparrow,crow,car
+spring.profiles.active=sparrow,english,car
 ```
+##### Exception when activating the profile names of the same service, the crow and sparrow are of the same BirdService class, which can be fixed by removing the crow if that is not neeed to be active.
+```
+#using the sparrow and crow which is of the same birdservices
+spring.profiles.active=sparrow,crow,car,english
+Field birdService in com.app2.controller.BirdController required a single bean, but 2 were found:
+	- getCrowService: defined by method 'getCrowService' in class path resource [com/app2/config/BirdConfig.class]
+	- getSparrowService: defined by method 'getSparrowService' in class path resource [com/app2/config/BirdConfig.class]
+
+Action:
+
+Consider marking one of the beans as @Primary, updating the consumer to accept multiple beans, or using @Qualifier to identify the bean that should be consumed
+
+```
+
 
 
