@@ -189,6 +189,6 @@ Consider marking one of the beans as @Primary, updating the consumer to accept m
 
 ```
 
-### @Autowire by default injects bean by type, to modify by name in java configuration we can use **@Bean(name="name_of_bean")** and accessing the bean name using **@Qualifier("name_of_bean")**. By default, when using qualifier, spring can take the name of the method in the config.
+##### @Autowire by default injects bean by type, to modify by name in java configuration we can use **@Bean(name="name_of_bean")** and accessing the bean name using **@Qualifier("name_of_bean")**. By default, when using qualifier, spring can take the name of the method in the config.
 
 
