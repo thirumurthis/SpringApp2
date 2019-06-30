@@ -81,7 +81,7 @@ public class VehicleConfig {
     }
     @Bean
     @Profile({"default","car"}) 
-    //Note: in @Profile if not default is mentioned, spring will not be able to resolve 
+    //Note: in @Profile if default is NOT mentioned, spring will not be able to resolve 
     //the bean and throws exception
     public VehicleService carService(){
         return new CarVehicleImpl();
