@@ -170,4 +170,10 @@ birdController.printBirdType();
 
 ```
 
+###### When multiple @Profile used on @Component and @Beans, the active profile for each controller needs to be mentioned in  *application.proeprties* for an active profile.
+```
+# multiple active profiles usage
+spring.profiles.active=sparrow,crow,car
+```
+
 
