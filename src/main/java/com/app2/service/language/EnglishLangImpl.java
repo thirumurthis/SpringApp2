@@ -1,5 +1,4 @@
-package com.app2.service;
-
+package com.app2.service.language;
 
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Component;
@@ -9,6 +8,6 @@ import org.springframework.stereotype.Component;
 public class EnglishLangImpl implements LanguageService {
     @Override
     public String printHello() {
-        return "hello";
+        return "Hello";
     }
 }
