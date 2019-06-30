@@ -1,7 +1,9 @@
 package spring.app2.App2;
 
+import com.app2.controller.BirdController;
 import com.app2.controller.LanguageController;
 import com.app2.controller.VehicleController;
+import com.app2.service.birds.BirdService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ApplicationContext;
@@ -19,7 +21,11 @@ public class App2Application {
 		languageController.sayHello();
 
 		VehicleController vehicleController = (VehicleController) ctx.getBean("vehicleController");
-		System.out.print(vehicleController.printVehicleType());
+		System.out.println(vehicleController.printVehicleType());
+
+		BirdController birdController = (BirdController) ctx.getBean("birdController");
+		birdController.printBirdType();
+		birdController.printGreyJayType();
 
 	}
 
