@@ -191,4 +191,11 @@ Consider marking one of the beans as @Primary, updating the consumer to accept m
 
 ##### @Autowire by default injects bean by type, to modify by name in java configuration we can use **@Bean(name="name_of_bean")** and accessing the bean name using **@Qualifier("name_of_bean")**. By default, when using qualifier, spring can take the name of the method in the config.
 
+### Using Spring xml config
+##### In spring boot, to load the spring context xml use the **@ImportResource("classpath:/path/context.xml")** instead of using *@ComponentScan* at the main class of SpringbootApplication.
+   - In order to resolve the java config, use the *<context:component-scan base-pacakge="package" />
+   - Note that in here for xml configuration the controller needs to be injected, comment the @Controller and declare *<bean id="controller" class="package.com.BirdController"/>*
+   
+
+
 
