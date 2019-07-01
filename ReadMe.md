@@ -196,6 +196,18 @@ Consider marking one of the beans as @Primary, updating the consumer to accept m
    - In order to resolve the java config, use the *<context:component-scan base-pacakge="package" />
    - Note that in here for xml configuration the controller needs to be injected, comment the @Controller and declare *<bean id="controller" class="package.com.BirdController"/>*
    
+### Xml configuration can be modularized, by creating different xml's and importing those using  xml tag.
+```
+<import resources="file.xml"/>
+```
+##### For profiles declartion use 
+```
+<beans profile="name"><bean id="someid" class="someclass"></bean></beans>
+```
+
+
+
+   
 
 
 
